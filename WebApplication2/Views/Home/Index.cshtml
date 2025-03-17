@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <div style="text-align: right;">
+        @if (ViewBag.IsLoggedIn)
+        {
+            <div>
+                <p>Welcome, @ViewBag.UserName</p>
+                <!-- Çıkış yap butonu -->
+                <a href="@Url.Action("Logout", "Account")">Logout</a>
+            </div>
+        }
+        else
+        {
+            <div>
+                <p>You are not logged in</p>
+                <!-- Çıkış yap butonu -->
+                <a href="@Url.Action("Index", "Account")">Login</a>
+            </div>
+                    }
+
+    </div>
+
+    <h1>Film Listesi</h1>
+
+    <ul>
+        @foreach (var movie in Model)
+        {
+            <li>
+                <img src="@movie.ImageUrl" alt="@movie.Title" width="100" />
+                <h3>@movie.Title</h3>
+                <p>Yönetmen: @movie.Director</p>
+                <p>Yıldızlar: @string.Join(", ", movie.Stars)</p>
+                <p>Yıl: @movie.ReleaseYear</p>
+            </li>
+        }
+    </ul>
+</body>
+</html>
