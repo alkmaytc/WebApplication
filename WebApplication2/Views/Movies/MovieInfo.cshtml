@@ -1,0 +1,17 @@
+﻿@model Movie
+
+<h2>Movie Details</h2>
+
+<p><strong>Title:</strong> @Model.Title</p>
+<p><strong>Director:</strong> @Model.Director</p>
+<p><strong>Stars:</strong> @string.Join(", ", Model.Stars)</p>
+<p><strong>Release Year:</strong> @Model.ReleaseYear</p>
+<img src="@Model.ImageUrl" alt="@Model.Title" width="200" />
+
+<form method="post" action="@Url.Action("AddToCart", "Movies")">
+    <input type="hidden" name="id" value="@Model.MovieID" />
+    <button type="submit">Add to Cart</button>
+</form>
+
+<p><a href="@Url.Action("Index", "Home")">Back to Home</a></p>
+<p><a href="@Url.Action("Cart", "Cart")">Go to Cart</a></p>

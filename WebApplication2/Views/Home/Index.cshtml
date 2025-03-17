@@ -2,41 +2,163 @@
 <html>
 <head>
     <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .navbar .left-links {
+                margin-left: 20px;
+            }
+
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                margin-right: 20px;
+                font-weight: bold;
+            }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .movie-card {
+            background: white;
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .movie-card img {
+                width: 100%;
+                border-radius: 5px;
+            }
+
+            .movie-card h3 {
+                margin: 10px 0;
+                font-size: 18px;
+            }
+
+            .movie-card p {
+                margin: 5px 0;
+                color: #555;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+            .btn:hover {
+                background-color: #218838;
+            }
+
+        .btn-added {
+            background-color: #6c757d;
+            cursor: default;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div style="text-align: right;">
-        @if (ViewBag.IsLoggedIn)
-        {
-            <div>
-                <p>Welcome, @ViewBag.UserName</p>
-                <!-- Çıkış yap butonu -->
-                <a href="@Url.Action("Logout", "Account")">Logout</a>
-            </div>
-        }
-        else
-        {
-            <div>
-                <p>Please log-in</p>
-                <!-- Çıkış yap butonu -->
-                <a href="@Url.Action("Index", "Account")">Login</a>
-            </div>
-                    }
 
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="left-links">
+            @if (ViewBag.IsLoggedIn)
+            {
+                <a href="@Url.Action("Cart", "Cart")">🛒 Go to Cart</a>
+            }
+        </div>
+
+        <div>
+            @if (ViewBag.IsLoggedIn)
+            {
+                <span>Welcome, @ViewBag.UserName</span>
+                <a href="@Url.Action("Logout", "Account")">Logout</a>
+            }
+            else
+            {
+                <span>Please log in</span>
+                <a href="@Url.Action("Index", "Account")">Login</a>
+            }
+        </div>
     </div>
 
-    <h1>Film Listesi</h1>
+    <h1 style="text-align: center;">Movie List</h1>
 
-    <ul>
+    <!-- Movie List Container -->
+    <div class="container">
         @foreach (var movie in Model)
         {
-            <li>
-                <img src="@movie.ImageUrl" alt="@movie.Title" width="100" />
-                <h3>@movie.Title</h3>
-                <p>Yönetmen: @movie.Director</p>
-                <p>Yıldızlar: @string.Join(", ", movie.Stars)</p>
-                <p>Yıl: @movie.ReleaseYear</p>
-            </li>
+            bool isInCart = false;
+            if (Context.Session.GetString("Cart") != null)
+            {
+                var cartItems = System.Text.Json.JsonSerializer.Deserialize<List<int>>(Context.Session.GetString("Cart"));
+                isInCart = cartItems.Contains(movie.MovieID);
+            }
+
+            <div class="movie-card">
+                <img src="@movie.ImageUrl" alt="@movie.Title">
+                <h3>
+                    <a href="@Url.Action("MovieInfo", "Movies", new { id = movie.MovieID })">
+                        @movie.Title
+                    </a>
+                </h3>
+                <p><strong>Director:</strong> @movie.Director</p>
+                <p><strong>Stars:</strong> @string.Join(", ", movie.Stars)</p>
+                <p><strong>Year:</strong> @movie.ReleaseYear</p>
+
+                <!-- Add to Cart Button -->
+                <button id="btn-@movie.MovieID" class="btn @(isInCart ? "btn-added" : "")"
+                        onclick="addToCart(@movie.MovieID)"
+                @(isInCart ? "disabled" : "")>
+                    @(isInCart ? "Added to Cart" : "Add to Cart")
+                </button>
+            </div>
         }
-    </ul>
+    </div>
+
+    <script>
+        function addToCart(movieId) {
+            $.post("@Url.Action("AddToCart", "Movies")", { id: movieId }, function (data) {
+                if (data.success) {
+                    let btn = $("#btn-" + movieId);
+                    btn.text("Added to Cart");
+                    btn.addClass("btn-added");
+                    btn.prop("disabled", true);
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
