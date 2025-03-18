@@ -9,11 +9,10 @@ public class CartController : Controller
 {
     public IActionResult Cart()
     {
-        // Check if the user is logged in
+        // Kullanıcının giriş yapıp yapmadığını kontrol et
         var userCookie = Request.Cookies["UserInfo"];
         if (string.IsNullOrEmpty(userCookie))
         {
-            // Redirect to login page if not logged in
             TempData["ErrorMessage"] = "You must log in to access the cart.";
             return RedirectToAction("Index", "Account");
         }
@@ -39,4 +38,25 @@ public class CartController : Controller
 
         return View(cartMovies);
     }
+
+    // 🛒 Sepetten film çıkarma işlemi
+    
+   /* public IActionResult RemoveFromCart(int id)
+    {
+        var cartJson = HttpContext.Session.GetString("Cart");
+        if (cartJson == null)
+        {
+            return Json(new { success = false, message = "Cart is empty." });
+        }
+
+        var cartMovieIds = JsonSerializer.Deserialize<List<int>>(cartJson);
+        if (cartMovieIds.Contains(id))
+        {
+            cartMovieIds.Remove(id);
+            HttpContext.Session.SetString("Cart", JsonSerializer.Serialize(cartMovieIds));
+        }
+        return View(cartMovies);
+
+    }
+*/
 }

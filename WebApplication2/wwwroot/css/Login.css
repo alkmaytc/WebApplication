@@ -1,0 +1,105 @@
+﻿a {
+    color: seashell;
+    text-decoration: auto;
+}
+/* Genel stil */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #B31010D6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Sayfanın tamamını kaplasın */
+}
+
+/* Navbar (Tam genişlikte olacak şekilde) */
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 5px solid rgba(235, 108, 108, 1);
+    border-radius: 28px; /* Kenarları kaldırarak tam genişlik sağladık */
+    background-color: rgba(140, 3, 5, 1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    /* Navbar içeriği */
+    .navbar .left-links {
+        margin-left: 20px;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+/* Login kutusu tam ortada */
+.login-container {
+    background: white;
+    width: 350px;
+    padding: 30px;
+    border-radius: 28px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border: 6px solid rgba(153, 78, 78, 0.56);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Form stilleri */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px; /* Input kutuları arasında boşluk */
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Buton stilleri */
+.btn {
+    display: block;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+}
+
+    .btn:hover {
+        background-color: #218838;
+    }
+
+/* Hata mesajı */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
