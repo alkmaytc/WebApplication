@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <style>
-
+        a {
+            color: seashell;
+            text-decoration: auto;
+        }
         .text {
             position: absolute;
             top: 0;
@@ -13,6 +16,8 @@
             font-weight: 700;
             color: #f5f5f5;
             text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16,16,16,0.4), 1px 22px 10px rgba(16,16,16,0.2), 1px 25px 35px rgba(16,16,16,0.2), 1px 30px 60px rgba(16,16,16,0.4);
+            z-index: 1000; /* Diğer öğelerin altında kalmaması için */
+             /* Arka plan ekleyerek daha belirgin yap */
         }
     </style>
     <meta charset="utf-8" />
@@ -24,17 +29,16 @@
 </head>
 <body>
     <header>
-        <nav class="mb-3">
-            
-                <a class="text" asp-area="" asp-controller="Home" asp-action="Index">MovieHell</a>
-          
-        </nav>
+        <a class="text" asp-area="" asp-controller="Home" asp-action="Index">MovieHell</a>
+
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">

@@ -1,0 +1,110 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(29, 22, 22);
+    margin: 0;
+    padding-top: 110px;
+    color: white;
+}
+
+.navbar {
+    border-radius: 28px;
+    background-color: rgba(140, 3, 5, 1);
+    box-shadow: -11px 2px 27px 1px rgba(159, 42, 42, 0.85);
+    color: white;
+    padding: 15px;
+    text-align: right;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    display: flex;
+}
+
+    .navbar .left-links {
+        margin-left: 20px;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.cart-card {
+    background: rgb(142, 22, 22);
+    width: 250px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: -11px 2px 27px 1px rgba(159, 42, 42, 0.85);
+    text-align: center;
+    border: 6px solid rgb(216, 64, 64);
+    border-radius: 27px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .cart-card img {
+        width: 100%;
+        border-radius: 5px;
+        border: 6px solid rgb(26, 6, 6);
+    }
+
+    .cart-card h3 {
+        margin: 10px 0;
+        font-size: 24px;
+    }
+
+    .cart-card p {
+        margin: 5px 0;
+        color: #ddd;
+        font-size: 14px;
+    }
+
+.btn {
+    display: block;
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: auto;
+    cursor: pointer;
+    border: none;
+}
+
+    .btn:hover {
+        background-color: #b52b3a;
+    }
+
+.continue-shopping {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .continue-shopping a {
+        color: seashell;
+        font-size: 18px;
+        text-decoration: none;
+    }
+
+.empty-cart {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -1,15 +1,63 @@
 ﻿@model List<Movie>
 
-<h2>Your Shopping Cart</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/cart.css">
+</head>
+<body>
+     
+    <div class="navbar">
+        <div class="left-links">
+            @if ((ViewBag.IsLoggedIn as bool?) ?? false)
+            {
+                <a href="@Url.Action("Cart", "Cart")">🛒 Go to Cart</a>
+            }
+        </div>
 
-<ul>
-    @foreach (var movie in Model)
-    {
-        <li>
-            <p><strong>@movie.Title</strong> - @movie.Director</p>
-            <img src="@movie.ImageUrl" alt="@movie.Title" width="100" />
-        </li>
-    }
-</ul>
+        <div>
+            @if ((ViewBag.IsLoggedIn as bool?) ?? false)
+            {
+                <span>Welcome, @ViewBag.UserName</span>
+                <a href="@Url.Action("Logout", "Account")">Logout</a>
+            }
+            else
+            {
+                <span>Please log in!</span>
+                <a href="@Url.Action("Index", "Account")">Login</a>
+            }
+        </div>
+    </div>
+    
+    <h1>Your Shopping Cart</h1>
 
-<p><a href="@Url.Action("Index", "Home")">Continue Shopping</a></p>
+    <div class="container">
+        @if (Model.Count == 0)
+        {
+            <p class="empty-cart">Your cart is empty.</p>
+        }
+        else
+        {
+            @foreach (var movie in Model)
+            {
+                <div class="cart-card">
+                    <img src="@movie.ImageUrl" alt="@movie.Title">
+                    <h3>@movie.Title</h3>
+                    <p><strong>Director:</strong> @movie.Director</p>
+
+                    @* <form method="post" action="@Url.Action("RemoveFromCart", "Cart")">
+                        <input type="hidden" name="movieId" value="@movie.MovieID" />
+                        <button type="submit" class="btn">Remove</button>
+                    </form> *@
+                </div>
+            }
+        }
+    </div>
+
+    <div class="continue-shopping">
+        <p><a href="@Url.Action("Index", "Home")">⬅ Continue Shopping</a></p>
+    </div>
+
+</body>
+</html>

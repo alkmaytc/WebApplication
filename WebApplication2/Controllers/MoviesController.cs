@@ -60,4 +60,22 @@ public class MoviesController : Controller
 
         return Json(new { success = true, alreadyAdded = alreadyAdded });
     }
+    public IActionResult AddToCartInfo(int id)
+    {
+        var cartJson = HttpContext.Session.GetString("Cart");
+        List<int> cart = string.IsNullOrEmpty(cartJson) ? new List<int>() : JsonSerializer.Deserialize<List<int>>(cartJson);
+
+        if (!cart.Contains(id))
+        {
+            cart.Add(id);
+            HttpContext.Session.SetString("Cart", JsonSerializer.Serialize(cart));
+            TempData["Message"] = "The movie is added for the first time!";
+        }
+        else
+        {
+            TempData["Message"] = "The movie is already in the list!";
+        }
+
+        return RedirectToAction("MovieInfo", new { id });
+    }
 }
