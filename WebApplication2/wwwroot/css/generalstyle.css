@@ -40,7 +40,7 @@ a {
 }
 
 .container {
-    width: 80%;
+    width: 100%;
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +52,7 @@ a {
     background: rgb(142, 22, 22);
     width: 250px;
     padding: 15px;
-    margin: 5px;
+    margin: 20px;
     box-shadow: -11px 2px 27px 1px rgba(159, 42, 42, 0.85);
     text-align: center;
     border: 6px solid rgb(216, 64, 64);
@@ -77,6 +77,14 @@ a {
         margin: 5px 0;
         color: #555;
         font-size: 15px;
+    }
+
+    .movie-card-hover a:hover img {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .movie-card-hover a:hover img {
+        transform: scale(1.1);
     }
 
 .btn {
