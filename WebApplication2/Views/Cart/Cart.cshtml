@@ -18,10 +18,10 @@
                 <div class="cart-card" id="movie-@movie.MovieID">
                     <img src="@movie.ImageUrl" alt="@movie.Title">
                     <h3>@movie.Title</h3>
-                    <p><strong>Director:</strong> @movie.Director</p>
+                    
 
                     <!-- 🛑 Remove from Cart Button (AJAX) -->
-                    <button class="remove-btn" onclick="removeFromCart(@movie.MovieID)">Remove</button>
+                    <button class="remove" onclick="removeFromCart(@movie.MovieID)">Remove</button>
                 </div>
             }
         

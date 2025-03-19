@@ -5,7 +5,21 @@
     padding-top: 110px;
     color: white;
 }
-
+.remove {
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: auto;
+    height: 45px;
+    width: 150px;
+    text-transform: uppercase;
+    background-color: darkgray;
+    
+    color: white;
+    border: none;
+}
 .navbar {
     border-radius: 28px;
     background-color: rgba(140, 3, 5, 1);

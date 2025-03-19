@@ -41,6 +41,7 @@ public class AccountController : Controller
 
         // ✅ Clear Session (Prevents logged-in state)
         HttpContext.Session.Remove("UserInfo");
+        HttpContext.Session.Remove("Cart");
 
         // ✅ Delete Cookie (Ensures user is logged out)
         Response.Cookies.Delete("UserInfo");
