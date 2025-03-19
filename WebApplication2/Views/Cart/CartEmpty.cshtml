@@ -1,3 +1,101 @@
-﻿<h2>Your Cart is Empty</h2>
-<p>@ViewBag.Message</p>
-<p><a href="@Url.Action("Index", "Home")">Back to Home</a></p>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart is Empty - MovieHell</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication2.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 120px;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .text {
+            background: linear-gradient(to right, #2CE3FF 23%, #FF1A16 76%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: fangsong;
+            font-size: 5em;
+            font-weight: 900;
+            z-index: 1000;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-message {
+            background: rgb(142, 22, 22);
+            padding: 30px;
+            box-shadow: -11px 2px 27px 1px rgba(159, 42, 42, 0.85);
+            text-align: center;
+            border: 6px solid rgb(216, 64, 64);
+            border-radius: 27px;
+            width: 400px;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+            .btn:hover {
+                background-color: #218838;
+            }
+
+        .footer {
+            border-top: 1px solid #ccc;
+            text-align: center;
+            padding: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a class="text" asp-area="" asp-controller="Home" asp-action="Index">MovieHell</a>
+    </header>
+
+    <div class="container">
+        <div class="cart-message">
+            <h2>Your Cart is Empty</h2>
+            <p>Please add movies to your cart.</p>
+            <a href="@Url.Action("Index", "Home")" class="btn">Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 - MovieHell <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </footer>
+
+</body>
+</html>
