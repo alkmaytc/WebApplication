@@ -1,4 +1,4 @@
-﻿/* Movie Details Page Styling */
+﻿
 
 body {
     font-family: Arial, sans-serif;
@@ -7,7 +7,7 @@ body {
     padding-top: 140px;
 }
 
-/* Centering Movie Details */
+
 .movie-details {
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@ body {
         color: #d9534f;
     }
 
-/* Movie Image Styling */
+
 .movie-image img {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -40,7 +40,7 @@ body {
     margin-right: 40px;
 }
 
-/* Action Buttons */
+
 .action-buttons {
     display: flex;
     flex-direction: column;

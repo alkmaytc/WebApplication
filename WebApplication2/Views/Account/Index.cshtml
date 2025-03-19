@@ -16,7 +16,7 @@
     <div class="login-container">
         <h2>Login</h2>
 
-        <!-- Login Form -->
+        
         <form method="post" asp-action="Login" asp-controller="Account">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
@@ -31,7 +31,7 @@
             <button type="submit" class="btn">Login</button>
         </form>
 
-        <!-- Error Message (if any) -->
+       
         @if (!string.IsNullOrEmpty(ViewBag.Error))
         {
             <div class="alert alert-danger" role="alert">

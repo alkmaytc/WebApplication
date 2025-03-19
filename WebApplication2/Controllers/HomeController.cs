@@ -8,7 +8,7 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
-        // Check if the user is logged in by reading from Session
+        
         var userInfo = HttpContext.Session.GetString("UserInfo");
 
         if (!string.IsNullOrEmpty(userInfo))
@@ -22,7 +22,7 @@ public class HomeController : Controller
             ViewBag.UserName = "Guest";
         }
 
-        // Store movies in session only once
+        
         if (HttpContext.Session.GetString("Movies") == null)
         {
             List<Movie> movies = new List<Movie>
@@ -38,7 +38,7 @@ new Movie { MovieID = 6, Title = "Fight Club", Director = "David Fincher", Stars
             HttpContext.Session.SetString("Movies", JsonConvert.SerializeObject(movies));
         }
 
-        // Retrieve movie list
+       
         var movieList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("Movies"));
 
         return View(movieList);

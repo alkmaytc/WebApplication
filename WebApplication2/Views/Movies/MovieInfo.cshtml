@@ -12,7 +12,7 @@
                 <img src="@Model.ImageUrl" alt="@Model.Title" width="250" />
             </div>
 
-            <!-- Movie Info -->
+            
             <div class="movie-info">
                 <p><strong>Title:</strong> @Model.Title</p>
                 <p><strong>Director:</strong> @Model.Director</p>
@@ -20,13 +20,13 @@
                 <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
             </div>
 
-            <!-- Action Buttons -->
+           
             <div class="action-buttons">
                 @{
                     bool isLoggedIn = Context.Session.GetString("UserInfo") != null;
                 }
 
-                <!-- Show Add to Cart Button if User is Logged In -->
+                
                 @if (isLoggedIn)
                 {
                     <form asp-controller="Movies" asp-action="AddToCartInfo" method="post" onsubmit="handleAddToCart(event, this)">
@@ -43,18 +43,18 @@
                     <button class="btn btn-disabled" onclick="showLoginWarning()">Add to Cart</button>
                 }
 
-                <!-- Warning Script -->
+                
                 <script>
                     function showLoginWarning() {
                         alert("You must log in to add items to the cart.");
-                        window.location.href = "@Url.Action("Index", "Account")"; // Redirect to Login Page
+                        window.location.href = "@Url.Action("Index", "Account")"; 
                     }
 
                     function handleAddToCart(event, form) {
-                        event.preventDefault(); // Prevent page reload
+                        event.preventDefault(); 
                         var button = form.querySelector("button");
 
-                        // Manually submit form using Fetch API
+                        
                         fetch(form.action, {
                             method: form.method,
                             body: new FormData(form)
@@ -68,7 +68,7 @@
                     }
                 </script>
 
-                <!-- Navigation Buttons -->
+                
                 <a asp-controller="Home" asp-action="Index" class="btn btn-back">Back to Home</a>
                 <a asp-controller="Cart" asp-action="Cart" class="btn btn-cart">Go to Cart</a>
             </div>

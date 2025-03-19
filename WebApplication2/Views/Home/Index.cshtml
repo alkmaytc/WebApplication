@@ -8,7 +8,7 @@
 </head>
 <body style="background-color: rgb(29, 22, 22);">
 
-    <!-- Movie List Container -->
+    
     <div class="container">
         @foreach (var movie in Model)
         {
@@ -27,7 +27,7 @@
                         <h3> @movie.Title </h3>
                     </a>
                 </div>
-                <!-- Add to Cart Button -->
+                
                 <button id="btn-@movie.MovieID" class="btn @(isInCart ? "btn-added" : "")"
                         onclick="addToCart(@movie.MovieID)"
                 @(isInCart ? "disabled" : "")>
@@ -44,11 +44,11 @@
     <script>
 
                 function addToCart(movieId) {
-            var isLoggedIn = @((ViewBag.IsLoggedIn ? "true" : "false")); // Kullanıcının giriş yapıp yapmadığını kontrol et
+            var isLoggedIn = @((ViewBag.IsLoggedIn ? "true" : "false")); 
 
             if (!isLoggedIn) {
                 alert("Please log in!");
-                return; // İşlemi durdur
+                return; 
             }
 
             $.post("@Url.Action("AddToCart", "Movies")", { id: movieId }, function (data) {

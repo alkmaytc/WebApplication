@@ -1,17 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// MVC ve Session desteðini ekle
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session süresi (30 dakika)
-    options.Cookie.HttpOnly = true; // Güvenlik için HttpOnly
-    options.Cookie.IsEssential = true; // Çerezler devre dýþý býrakýlsa bile çalýþmasýný saðlar
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+    options.Cookie.HttpOnly = true; 
+    options.Cookie.IsEssential = true; 
 });
 
 var app = builder.Build();
 
-// Hata yönetimi
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -22,7 +22,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession(); // ? Session Middleware aktif hale getirildi
+app.UseSession(); 
 app.UseAuthorization();
 
 app.MapControllerRoute(

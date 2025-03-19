@@ -9,7 +9,7 @@ public class CartController : Controller
 {
     public IActionResult Cart()
     {
-        // Check if user is logged in
+       
         var userCookie = Request.Cookies["UserInfo"];
         if (string.IsNullOrEmpty(userCookie))
         {
@@ -42,7 +42,7 @@ public class CartController : Controller
         return View();
     }
 
-    // ✅ Remove Movie from Cart (AJAX)
+    
     [HttpPost]
     public IActionResult RemoveFromCart(int movieId)
     {

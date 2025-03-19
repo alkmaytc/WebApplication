@@ -9,7 +9,7 @@ public class MoviesController : Controller
 {
     public IActionResult MovieInfo(int? id)
     {
-        // Retrieve movie list from session
+       
         var movieListJson = HttpContext.Session.GetString("Movies");
         if (movieListJson == null)
         {
@@ -18,7 +18,7 @@ public class MoviesController : Controller
 
         var movies = JsonSerializer.Deserialize<List<Movie>>(movieListJson);
 
-        // Validate movie ID
+        
         if (!id.HasValue)
         {
             ViewBag.Message = "Movie ID is missing.";
@@ -32,7 +32,7 @@ public class MoviesController : Controller
             return View("MovieInfoError");
         }
 
-        // Sepette olup olmadığını kontrol et
+       
         var cartJson = HttpContext.Session.GetString("Cart");
         List<int> cart = string.IsNullOrEmpty(cartJson) ? new List<int>() : JsonSerializer.Deserialize<List<int>>(cartJson);
         ViewBag.IsInCart = cart.Contains(id.Value);

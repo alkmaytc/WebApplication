@@ -2,7 +2,7 @@
     color: seashell;
     text-decoration: auto;
 }
-/* Genel stil */
+
 body {
     font-family: Arial, sans-serif;
     background-color: rgb(29, 22, 22);
@@ -11,13 +11,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh; /* Sayfanın tamamını kaplasın */
+    height: 100vh; 
 }
 
-/* Navbar (Tam genişlikte olacak şekilde) */
 
 
-/* Login kutusu tam ortada */
+
 .login-container {
     background: white;
     width: 350px;
@@ -32,10 +31,10 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* Form stilleri */
+
 .form-group {
     text-align: left;
-    margin-bottom: 20px; /* Input kutuları arasında boşluk */
+    margin-bottom: 20px; 
 }
 
 label {
@@ -53,7 +52,7 @@ input[type="text"] {
     font-size: 16px;
 }
 
-/* Buton stilleri */
+
 .btn {
     display: block;
     padding: 12px;
@@ -71,7 +70,7 @@ input[type="text"] {
         background-color: #218838;
     }
 
-/* Hata mesajı */
+
 .error-message {
     color: red;
     font-weight: bold;

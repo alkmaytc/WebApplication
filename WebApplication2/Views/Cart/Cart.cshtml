@@ -20,7 +20,7 @@
                     <h3>@movie.Title</h3>
                     
 
-                    <!-- 🛑 Remove from Cart Button (AJAX) -->
+                    
                     <button class="remove-btn" onclick="removeFromCart(@movie.MovieID)">Remove</button>
                 </div>
             }
@@ -31,14 +31,14 @@
         <p><a href="@Url.Action("Index", "Home")">⬅ Continue Shopping</a></p>
     </div>
 
-    <!-- ✅ AJAX Script to Remove from Cart -->
+   
     <script>
         function removeFromCart(movieId) {
             $.post("@Url.Action("RemoveFromCart", "Cart")", { movieId: movieId }, function (data) {
                 if (data.success) {
                     $("#movie-" + movieId).fadeOut(300, function () { $(this).remove(); });
 
-                    // If cart is empty after removal, show empty cart message
+                    
                     if ($(".cart-card").length === 1) {
                          window.location.href = "@Url.Action("CartEmpty", "Cart")";
                     }
