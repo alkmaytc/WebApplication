@@ -66,6 +66,10 @@ body {
    
 }
 
+.btn-added {
+    background-color: gray;
+    cursor: not-allowed;
+}
     .btn-add:hover {
         background-color: #218838;
     }

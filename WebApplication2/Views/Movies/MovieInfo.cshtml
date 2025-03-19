@@ -1,42 +1,70 @@
 ﻿@model Movie
-<head>  
-
-<link rel="stylesheet" type="text/css" href="~/css/movie-details.css" />
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/movie-details.css" />
 </head>
 
-<body >
+<body>
 
-   <div class="container">
-    <div class="movie-details">
-        <!-- Film Resmi -->
-        <div class="movie-image">
-            <img src="@Model.ImageUrl" alt="@Model.Title" width="250" />
-        </div>
+    <div class="container">
+        <div class="movie-details">
+            <!-- Film Resmi -->
+            <div class="movie-image">
+                <img src="@Model.ImageUrl" alt="@Model.Title" width="250" />
+            </div>
 
-        <!-- Film Bilgileri -->
-        <div class="movie-info">
-            <p><strong>Title:</strong> @Model.Title</p>
-            <p><strong>Director:</strong> @Model.Director</p>
-            <p><strong>Stars:</strong> @string.Join(", ", Model.Stars)</p>
-            <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
-        </div>
+            <!-- Film Bilgileri -->
+            <div class="movie-info">
+                <p><strong>Title:</strong> @Model.Title</p>
+                <p><strong>Director:</strong> @Model.Director</p>
+                <p><strong>Stars:</strong> @string.Join(", ", Model.Stars)</p>
+                <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
+            </div>
 
-        <!-- Butonlar -->
-        <div class="action-buttons">
-            <!-- Sepete Ekle Formu -->
-            <form asp-controller="Movies" asp-action="AddToCartInfo" method="post">
-                <input type="hidden" name="id" value="@Model.MovieID" />
-                <button type="submit" class="btn btn-add">Add to Cart</button>
-            </form>
+            <!-- Butonlar -->
+            <div class="action-buttons">
+                <!-- Sepete Ekle Formu -->
+                <form asp-controller="Movies" asp-action="AddToCartInfo" method="post" onsubmit="handleAddToCart(event, this)">
+                    <input type="hidden" name="id" value="@Model.MovieID" />
+                    <button id="btn-@Model.MovieID" type="submit"
+                            class="btn @(ViewBag.IsInCart ? "btn-added" : "btn-add")"
+                    @(ViewBag.IsInCart ? "disabled" : "")>
+                        @(ViewBag.IsInCart ? "Added to Cart" : "Add to Cart")
+                    </button>
+                </form>
 
-            <!-- Ana Sayfaya Dön -->
-            <a asp-controller="Home" asp-action="Index" class="btn btn-back">Back to Home</a>
+                <script>
+                    function handleAddToCart(event, form) {
+                        event.preventDefault(); // Sayfanın yeniden yüklenmesini engelle
+                        var button = form.querySelector("button");
 
-            <!-- Sepete Git -->
-            <a asp-controller="Cart" asp-action="Cart" class="btn btn-cart">Go to Cart</a>
+                        // Formu manuel olarak gönder
+                        fetch(form.action, {
+                            method: form.method,
+                            body: new FormData(form)
+                        }).then(response => {
+                            if (response.ok) {
+                                button.textContent = "Added to Cart";
+                                button.classList.add("btn-added");
+                                button.disabled = true;
+                            }
+                        }).catch(error => console.error("Error:", error));
+                    }
+                </script>
+
+                <!-- Ana Sayfaya Dön -->
+                <a asp-controller="Home" asp-action="Index" class="btn btn-back">Back to Home</a>
+
+                <!-- Sepete Git -->
+                <a asp-controller="Cart" asp-action="Cart" class="btn btn-cart">Go to Cart</a>
+            </div>
         </div>
     </div>
-</div>
 
+    <style>
+        .btn-added {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
 
 </body>
