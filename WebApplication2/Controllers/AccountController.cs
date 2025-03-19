@@ -38,6 +38,7 @@ public class AccountController : Controller
 
     public IActionResult Logout()
     {
+
         // ✅ Clear Session (Prevents logged-in state)
         HttpContext.Session.Remove("UserInfo");
 

@@ -7,8 +7,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/cart.css">
 </head>
 <body>
-    
-    
+
     <h1>Your Shopping Cart</h1>
 
     <div class="container">
@@ -20,15 +19,13 @@
         {
             @foreach (var movie in Model)
             {
-                <div class="cart-card">
+                <div class="cart-card" id="movie-@movie.MovieID">
                     <img src="@movie.ImageUrl" alt="@movie.Title">
                     <h3>@movie.Title</h3>
                     <p><strong>Director:</strong> @movie.Director</p>
 
-                    @* <form method="post" action="@Url.Action("RemoveFromCart", "Cart")">
-                        <input type="hidden" name="movieId" value="@movie.MovieID" />
-                        <button type="submit" class="btn">Remove</button>
-                    </form> *@
+                    <!-- 🛑 Remove from Cart Button (AJAX) -->
+                    <button class="remove-btn" onclick="removeFromCart(@movie.MovieID)">Remove</button>
                 </div>
             }
         }
@@ -37,6 +34,24 @@
     <div class="continue-shopping">
         <p><a href="@Url.Action("Index", "Home")">⬅ Continue Shopping</a></p>
     </div>
+
+    <!-- ✅ AJAX Script to Remove from Cart -->
+    <script>
+        function removeFromCart(movieId) {
+            $.post("@Url.Action("RemoveFromCart", "Cart")", { movieId: movieId }, function (data) {
+                if (data.success) {
+                    $("#movie-" + movieId).fadeOut(300, function () { $(this).remove(); });
+
+                    // If cart is empty after removal, show empty cart message
+                    if ($(".cart-card").length === 1) {
+                        $(".container").html('<p class="empty-cart">Your cart is empty.</p>');
+                    }
+                } else {
+                    alert("Error: " + data.message);
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>

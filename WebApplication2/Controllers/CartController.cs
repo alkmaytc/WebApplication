@@ -9,7 +9,7 @@ public class CartController : Controller
 {
     public IActionResult Cart()
     {
-        // Kullanıcının giriş yapıp yapmadığını kontrol et
+        // Check if user is logged in
         var userCookie = Request.Cookies["UserInfo"];
         if (string.IsNullOrEmpty(userCookie))
         {
@@ -41,27 +41,24 @@ public class CartController : Controller
     {
         return View();
     }
-}
 
-
-    // 🛒 Sepetten film çıkarma işlemi
-    /*
-    public IActionResult RemoveFromCart(int id)
+    // ✅ Remove Movie from Cart (AJAX)
+    [HttpPost]
+    public IActionResult RemoveFromCart(int movieId)
     {
         var cartJson = HttpContext.Session.GetString("Cart");
-        if (cartJson == null)
+        if (string.IsNullOrEmpty(cartJson))
         {
             return Json(new { success = false, message = "Cart is empty." });
         }
 
         var cartMovieIds = JsonSerializer.Deserialize<List<int>>(cartJson);
-        if (cartMovieIds.Contains(id))
+        if (cartMovieIds.Contains(movieId))
         {
-            cartMovieIds.Remove(id);
+            cartMovieIds.Remove(movieId);
             HttpContext.Session.SetString("Cart", JsonSerializer.Serialize(cartMovieIds));
         }
-        return View(cartMovies);
 
+        return Json(new { success = true, message = "Movie removed from cart." });
     }
-    */
-
+}
