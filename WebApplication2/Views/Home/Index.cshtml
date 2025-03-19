@@ -47,12 +47,14 @@
             }
 
             <div class="movie-card">
-                <img src="@movie.ImageUrl" alt="@movie.Title">
-                <h3>
+               
+                <div class="movie-card-hover">
                     <a href="@Url.Action("MovieInfo", "Movies", new { id = movie.MovieID })">
-                        @movie.Title
+                        <img src="@movie.ImageUrl" alt="@movie.Title">
+                        <h3> @movie.Title </h3>
                     </a>
-                </h3>
+                </div>
+               
                 
                
                 
