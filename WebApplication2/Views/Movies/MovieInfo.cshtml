@@ -4,30 +4,39 @@
 <link rel="stylesheet" type="text/css" href="~/css/movie-details.css" />
 </head>
 
-<body > 
+<body >
 
-<h2>Movie Details</h2>
-<div class="movie-details">
-    <div class="movie-info">
-        <p><strong>Title:</strong> @Model.Title</p>
-        <p><strong>Director:</strong> @Model.Director</p>
-        <p><strong>Stars:</strong> @string.Join(", ", Model.Stars)</p>
-        <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
-    </div>
+   <div class="container">
+    <div class="movie-details">
+        <!-- Film Resmi -->
+        <div class="movie-image">
+            <img src="@Model.ImageUrl" alt="@Model.Title" width="250" />
+        </div>
 
-    <div class="movie-image">
-        <img src="@Model.ImageUrl" alt="@Model.Title" width="250" />
-    </div>
+        <!-- Film Bilgileri -->
+        <div class="movie-info">
+            <p><strong>Title:</strong> @Model.Title</p>
+            <p><strong>Director:</strong> @Model.Director</p>
+            <p><strong>Stars:</strong> @string.Join(", ", Model.Stars)</p>
+            <p><strong>Release Year:</strong> @Model.ReleaseYear</p>
+        </div>
 
-    <div class="action-buttons">
+        <!-- Butonlar -->
+        <div class="action-buttons">
+            <!-- Sepete Ekle Formu -->
+            <form asp-controller="Movies" asp-action="AddToCartInfo" method="post">
+                <input type="hidden" name="id" value="@Model.MovieID" />
+                <button type="submit" class="btn btn-add">Add to Cart</button>
+            </form>
 
-        <form method="post" action="@Url.Action("AddToCartInfo", "Movies")">
-            <input type="hidden" name="id" value="@Model.MovieID" />
-            <button type="submit" class="btn btn-add">Add to Cart</button>
-        </form>
+            <!-- Ana Sayfaya Dön -->
+            <a asp-controller="Home" asp-action="Index" class="btn btn-back">Back to Home</a>
 
-        <p><a href="@Url.Action("Index", "Home")" class="btn btn-back">Back to Home</a></p>
-        <p><a href="@Url.Action("Cart", "Cart")" class="btn btn-cart">Go to Cart</a></p>
+            <!-- Sepete Git -->
+            <a asp-controller="Cart" asp-action="Cart" class="btn btn-cart">Go to Cart</a>
+        </div>
     </div>
 </div>
+
+
 </body>
