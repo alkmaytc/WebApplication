@@ -1,8 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MovieHell</title>
@@ -11,47 +9,77 @@
     <link rel="stylesheet" href="~/WebApplication2.styles.css" asp-append-version="true" />
     <style>
         .f-margin {
-            margin-bottom:auto;
-        } 
+            margin-bottom: auto;
+        }
+
         .a {
             color: seashell;
-           
             text-decoration: none;
         }
 
         .text {
-            background: #2CE3FF;
             background: linear-gradient(to right, #2CE3FF 23%, #FF1A16 76%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
             font-family: fangsong;
-            font-size: 6em; 
+            font-size: 6em;
             font-weight: 900;
-            
-          
-            z-index: 1000; 
-            
-            
+            z-index: 1000;
         }
-        </style>
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                margin-right: 15px;
+            }
+    </style>
 </head>
 <body>
     <header>
         <a class="text" asp-area="" asp-controller="Home" asp-action="Index">MovieHell</a>
-
     </header>
 
     <div class="container">
-        <main style= "padding-bottom: 8rem !important;" role="main" class="pb-3">
+        <main style="padding-bottom: 8rem !important;" role="main" class="pb-3">
+            <div class="navbar">
+                <div class="left-links">
+                    @{
+                        bool isLoggedIn = Context.Session.GetString("UserInfo") != null;
+                        string userName = isLoggedIn ? Context.Session.GetString("UserInfo") : "Guest";
+                    }
+                    @if (isLoggedIn)
+                    {
+                        <a href="@Url.Action("Cart", "Cart")">🛒 Go to Cart</a>
+                    }
+                </div>
+
+                <div>
+                    @if (isLoggedIn)
+                    {
+                        <span>Welcome, @userName</span>
+                        <a href="@Url.Action("Logout", "Account")">Logout</a>
+                    }
+                    else
+                    {
+                        <span>Please log in!</span>
+                        <a href="@Url.Action("Index", "Account")">Login</a>
+                    }
+                </div>
+            </div>
             @RenderBody()
         </main>
     </div>
-
 
     <footer style="margin-bottom:auto;" class="border-top footer text-muted">
         <div class="container">

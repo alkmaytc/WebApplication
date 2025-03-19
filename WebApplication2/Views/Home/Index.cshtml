@@ -13,27 +13,7 @@
 
     
 
-    <div class="navbar">
-        <div class="left-links">
-            @if (ViewBag.IsLoggedIn)
-            {
-                <a href="@Url.Action("Cart", "Cart")">🛒 Go to Cart</a>
-            }
-        </div>
-
-        <div>
-            @if (ViewBag.IsLoggedIn)
-            {
-                <span>Welcome, @ViewBag.UserName</span>
-                <a href="@Url.Action("Logout", "Account")">Logout</a>
-            }
-            else
-            {
-                <span>Please log in!</span>
-                <a href="@Url.Action("Index", "Account")">Login</a>
-            }
-        </div>
-    </div>
+    
     
     <!-- Movie List Container -->
     <div class="container">
