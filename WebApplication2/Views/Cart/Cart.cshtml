@@ -7,28 +7,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/cart.css">
 </head>
 <body>
-     
-    <div class="navbar">
-        <div class="left-links">
-            @if ((ViewBag.IsLoggedIn as bool?) ?? false)
-            {
-                <a href="@Url.Action("Cart", "Cart")">🛒 Go to Cart</a>
-            }
-        </div>
-
-        <div>
-            @if ((ViewBag.IsLoggedIn as bool?) ?? false)
-            {
-                <span>Welcome, @ViewBag.UserName</span>
-                <a href="@Url.Action("Logout", "Account")">Logout</a>
-            }
-            else
-            {
-                <span>Please log in!</span>
-                <a href="@Url.Action("Index", "Account")">Login</a>
-            }
-        </div>
-    </div>
+    
     
     <h1>Your Shopping Cart</h1>
 

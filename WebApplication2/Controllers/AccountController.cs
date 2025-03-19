@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System;
 
 public class AccountController : Controller
 {
@@ -13,35 +14,37 @@ public class AccountController : Controller
     {
         if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
         {
-            // Kullanıcı adını ve soyadını Session’a kaydet
-            HttpContext.Session.SetString("UserName", firstName + " " + lastName);
+            string fullName = firstName + " " + lastName;
 
-            // Kullanıcı adını ve soyadını Cookie olarak kaydet (1 ay geçerli)
-            CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddMonths(1);
-            Response.Cookies.Append("UserInfo", firstName + " " + lastName, options);
+            // ✅ Store user info in Session (Ensures session works)
+            HttpContext.Session.SetString("UserInfo", fullName);
 
-            // Ana sayfaya yönlendir
+            // ✅ Store user info in Cookies (Valid for 1 month)
+            CookieOptions options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddMonths(1),
+                HttpOnly = true // Optional: Improves security by preventing JS access
+            };
+            Response.Cookies.Append("UserInfo", fullName, options);
+
+            // ✅ Redirect to Home Page
             return RedirectToAction("Index", "Home");
         }
 
-        // Hata mesajı, giriş bilgileri eksikse
+        // ❌ Show error if input is missing
         ViewBag.Error = "Lütfen adınızı ve soyadınızı giriniz!";
-        return View("Index");  // Eğer form eksikse tekrar Login sayfasına döner
+        return View("Index");
     }
 
-
-    // 4️⃣ Çıkış işlemi
     public IActionResult Logout()
     {
-        // 1️⃣ Session'ı temizle
-        HttpContext.Session.Clear();
+        // ✅ Clear Session (Prevents logged-in state)
+        HttpContext.Session.Remove("UserInfo");
 
-        // 2️⃣ Cookie'yi temizle
+        // ✅ Delete Cookie (Ensures user is logged out)
         Response.Cookies.Delete("UserInfo");
 
-        // 3️⃣ Ana sayfaya yönlendir
+        // ✅ Redirect to Home Page
         return RedirectToAction("Index", "Home");
     }
-
 }
