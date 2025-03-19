@@ -44,7 +44,7 @@ a {
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: row;
 }
 
@@ -79,13 +79,13 @@ a {
         font-size: 15px;
     }
 
-    .movie-card-hover a:hover img {
-        transition: transform 0.2s ease-in-out;
-    }
+.movie-card-hover a:hover img {
+    transition: transform 0.2s ease-in-out;
+}
 
-    .movie-card-hover a:hover img {
-        transform: scale(1.1);
-    }
+.movie-card-hover a:hover img {
+    transform: scale(1.1);
+}
 
 .btn {
     display: block;
@@ -107,5 +107,3 @@ a {
     background-color: #6c757d;
     cursor: default;
 }
-
-

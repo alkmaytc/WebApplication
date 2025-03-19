@@ -5,7 +5,7 @@
     padding-top: 110px;
     color: white;
 }
-.remove {
+.remove-btn {
     padding: 12px 20px;
     text-align: center;
     border-radius: 5px;
@@ -15,8 +15,8 @@
     height: 45px;
     width: 150px;
     text-transform: uppercase;
-    background-color: darkgray;
-    
+    background-color: rgb(92, 93, 94);
+    ;
     color: white;
     border: none;
 }
