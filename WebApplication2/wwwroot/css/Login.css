@@ -5,7 +5,7 @@
 /* Genel stil */
 body {
     font-family: Arial, sans-serif;
-    background-color: #B31010D6;
+    background-color: rgb(29, 22, 22);
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,33 +15,7 @@ body {
 }
 
 /* Navbar (Tam genişlikte olacak şekilde) */
-.navbar {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 5px solid rgba(235, 108, 108, 1);
-    border-radius: 28px; /* Kenarları kaldırarak tam genişlik sağladık */
-    background-color: rgba(140, 3, 5, 1);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-    /* Navbar içeriği */
-    .navbar .left-links {
-        margin-left: 20px;
-    }
-
-    .navbar a {
-        color: white;
-        text-decoration: none;
-        margin-right: 20px;
-        font-weight: bold;
-    }
 
 /* Login kutusu tam ortada */
 .login-container {
