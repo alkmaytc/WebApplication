@@ -20,10 +20,9 @@ public class CartController : Controller
         var movieListJson = HttpContext.Session.GetString("Movies");
         var cartJson = HttpContext.Session.GetString("Cart");
 
-        if (movieListJson == null || cartJson == null)
+        if (string.IsNullOrEmpty(movieListJson) || string.IsNullOrEmpty(cartJson))
         {
-            ViewBag.Message = "Your cart is empty.";
-            return View("CartEmpty");
+            return RedirectToAction("CartEmpty");
         }
 
         var movies = JsonSerializer.Deserialize<List<Movie>>(movieListJson);
@@ -32,12 +31,18 @@ public class CartController : Controller
 
         if (cartMovies.Count == 0)
         {
-            ViewBag.Message = "Your cart is empty.";
-            return View("CartEmpty");
+            return RedirectToAction("CartEmpty");
         }
 
         return View(cartMovies);
     }
+
+    public IActionResult CartEmpty()
+    {
+        return View();
+    }
+}
+
 
     // 🛒 Sepetten film çıkarma işlemi
     /*
@@ -59,4 +64,4 @@ public class CartController : Controller
 
     }
     */
-}
+

@@ -32,6 +32,11 @@ public class MoviesController : Controller
             return View("MovieInfoError");
         }
 
+        // Sepette olup olmadığını kontrol et
+        var cartJson = HttpContext.Session.GetString("Cart");
+        List<int> cart = string.IsNullOrEmpty(cartJson) ? new List<int>() : JsonSerializer.Deserialize<List<int>>(cartJson);
+        ViewBag.IsInCart = cart.Contains(id.Value);
+
         return View(movie);
     }
 
@@ -60,6 +65,7 @@ public class MoviesController : Controller
 
         return Json(new { success = true, alreadyAdded = alreadyAdded });
     }
+
     public IActionResult AddToCartInfo(int id)
     {
         var cartJson = HttpContext.Session.GetString("Cart");
