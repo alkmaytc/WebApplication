@@ -34,6 +34,7 @@ body {
 .movie-image img {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
 }
 
 /* Action Buttons */
@@ -52,12 +53,14 @@ body {
     margin-top: 15px;
     width: 200px;
     text-transform: uppercase;
+    margin-left: 25px;
 }
 
 .btn-add {
     background-color: #28a745;
     color: white;
     border: none;
+   
 }
 
     .btn-add:hover {

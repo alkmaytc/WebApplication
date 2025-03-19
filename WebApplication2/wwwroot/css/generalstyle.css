@@ -79,6 +79,14 @@ a {
         font-size: 15px;
     }
 
+    .movie-card-hover a:hover img {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .movie-card-hover a:hover img {
+        transform: scale(1.1);
+    }
+
 .btn {
     display: block;
     padding: 8px 12px;

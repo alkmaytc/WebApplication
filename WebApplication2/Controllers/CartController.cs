@@ -40,8 +40,8 @@ public class CartController : Controller
     }
 
     // 🛒 Sepetten film çıkarma işlemi
-    
-   /* public IActionResult RemoveFromCart(int id)
+    /*
+    public IActionResult RemoveFromCart(int id)
     {
         var cartJson = HttpContext.Session.GetString("Cart");
         if (cartJson == null)
@@ -58,5 +58,5 @@ public class CartController : Controller
         return View(cartMovies);
 
     }
-*/
+    */
 }
